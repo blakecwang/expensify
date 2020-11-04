@@ -21,9 +21,19 @@ const store = configureStore()
 
 store.dispatch(addExpense({ description: 'gas bill' }))
 store.dispatch(addExpense({ description: 'water bill' }))
-store.dispatch(setTextFilter('bill'))
+store.dispatch(setTextFilter('water'))
+
+setTimeout(() => {
+  store.dispatch(setTextFilter('gas'))
+}, 3000)
 
 const state = store.getState()
 console.log(getVisibleExpenses(state.expenses, state.filters))
 
-ReactDOM.render(<AppRouter />, document.getElementById('root'))
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+)
+
+ReactDOM.render(jsx, document.getElementById('root'))
