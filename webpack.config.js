@@ -16,7 +16,10 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['env', 'react'],
-            plugins: ['transform-class-properties']
+            plugins: [
+              'transform-class-properties',
+              'transform-object-rest-spread'
+            ]
           }
         }
       },
@@ -28,6 +31,7 @@ module.exports = {
   },
   devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: public_dir
+    contentBase: public_dir,
+    historyApiFallback: true
   }
 }
