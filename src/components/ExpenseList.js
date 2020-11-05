@@ -13,7 +13,8 @@ const ExpenseList = ({ expenses, filters }) => (
           <th>Description</th>
           <th>Note</th>
           <th>Amount</th>
-          <th>CreatedAt</th>
+          <th>Date</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>

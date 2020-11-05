@@ -19,7 +19,9 @@ export default (expenses, {
   })
 
   return filteredExpenses.sort((expense1, expense2) => {
-    if (expense1[sortBy] > expense2[sortBy]) {
+    const actualSortBy = sortBy === 'amount' ? 'amount' : 'createdAt'
+
+    if (expense1[actualSortBy] > expense2[actualSortBy]) {
       return 1
     } else {
       return -1

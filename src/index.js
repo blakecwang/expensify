@@ -19,13 +19,19 @@ import './index.scss'
 
 const store = configureStore()
 
-store.dispatch(addExpense({ description: 'gas bill' }))
-store.dispatch(addExpense({ description: 'water bill' }))
-store.dispatch(setTextFilter('water'))
+store.dispatch(addExpense({ description: 'gas bill', amount: 1000, createdAt: 2 }))
+store.dispatch(addExpense({ description: 'water bill', amount: 2000, createdAt: 3 }))
+store.dispatch(addExpense({ description: 'rent', amount: 3000, createdAt: 1 }))
 
-setTimeout(() => {
-  store.dispatch(setTextFilter('gas'))
-}, 3000)
+// amount
+//   gas bill
+//   water bill
+//   rent
+//
+// date
+//   rent
+//   gas bill
+//   water bill
 
 const state = store.getState()
 console.log(getVisibleExpenses(state.expenses, state.filters))
