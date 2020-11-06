@@ -19,9 +19,9 @@ import './index.scss'
 
 const store = configureStore()
 
-store.dispatch(addExpense({ description: 'gas bill', amount: 1000, createdAt: 2 }))
-store.dispatch(addExpense({ description: 'water bill', amount: 2000, createdAt: 3 }))
-store.dispatch(addExpense({ description: 'rent', amount: 3000, createdAt: 1 }))
+store.dispatch(addExpense({ description: 'gas bill', amount: 1000, date: 2 }))
+store.dispatch(addExpense({ description: 'water bill', amount: 2000, date: 3 }))
+store.dispatch(addExpense({ description: 'rent', amount: 3000, date: 1 }))
 
 // amount
 //   gas bill
@@ -33,9 +33,22 @@ store.dispatch(addExpense({ description: 'rent', amount: 3000, createdAt: 1 }))
 //   gas bill
 //   water bill
 
-const state = store.getState()
-console.log(getVisibleExpenses(state.expenses, state.filters))
+// Hacky way to suppress warnings
+const warn = console.warn
+console.warn = (...warnings) => {
+  const warningsToSuppress = [
+    'componentWillReceiveProps has been renamed',
+    'componentWillUpdate has been renamed'
+  ]
 
+  const warningsICareAbout = warnings.filter(warning => (
+    !(new RegExp(warningsToSuppress.join('|')).test(warning))
+  ))
+
+  warn(...warningsICareAbout)
+}
+
+const state = store.getState()
 const jsx = (
   <Provider store={store}>
     <AppRouter />

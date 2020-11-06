@@ -6,9 +6,12 @@
   "license": "MIT",
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "moment": "^2.29.1",
     "node-fetch": "^2.6.1",
     "normalize.css": "7.0.0",
     "react": "16.13.1",
+    "react-addons-shallow-compare": "^15.6.2",
+    "react-dates": "^21.8.0",
     "react-dom": "16.13.1",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",

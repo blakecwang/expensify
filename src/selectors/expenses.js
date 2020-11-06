@@ -11,17 +11,15 @@ export default (expenses, {
 
     const textMatch = descriptionMatch || noteMatch
     const startDateMatch = typeof startDate === 'undefined' ||
-      expense.createdAt >= startDate
+      expense.date >= startDate
     const endDateMatch = typeof endDate === 'undefined' ||
-      expense.createdAt <= endDate
+      expense.date <= endDate
 
     return textMatch && startDateMatch && endDateMatch
   })
 
   return filteredExpenses.sort((expense1, expense2) => {
-    const actualSortBy = sortBy === 'amount' ? 'amount' : 'createdAt'
-
-    if (expense1[actualSortBy] > expense2[actualSortBy]) {
+    if (expense1[sortBy] > expense2[sortBy]) {
       return 1
     } else {
       return -1

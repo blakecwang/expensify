@@ -10,10 +10,12 @@ const ExpenseListFilters = ({ filters, dispatch }) => (
     <select
       value={filters.sortBy}
       onChange={(e) => {
-        if (e.target.value === 'date') {
-          dispatch(sortByDate())
-        } else {
-          dispatch(sortByAmount())
+        switch (e.target.value) {
+          case 'date':
+            dispatch(sortByDate())
+            break
+          case 'amount':
+            dispatch(sortByAmount())
         }
       }}
     >

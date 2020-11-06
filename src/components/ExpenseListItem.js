@@ -6,14 +6,14 @@ const ExpenseListItem = ({
   description,
   note,
   amount,
-  createdAt
+  date
 }) => (
   <tr>
     <td>{id}</td>
     <td>{description}</td>
     <td>{note}</td>
     <td>{amount}</td>
-    <td>{createdAt}</td>
+    <td>{date}</td>
     <td><RemoveExpenseButton id={id} /></td>
   </tr>
 )
