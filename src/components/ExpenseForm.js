@@ -92,7 +92,7 @@ const ExpenseForm = ({ buttonText, submit, expense }) => {
             onDateChange={date => date && setDate(date)}
             focused={dateFocused}
             onFocusChange={({ focused }) => setDateFocused(focused)}
-            displayFormat={() => DATE_FORMAT}
+            displayFormat={DATE_FORMAT}
             numberOfMonths={1}
             isOutsideRange={() => false}
           />

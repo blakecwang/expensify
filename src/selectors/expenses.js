@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export default (expenses, {
   text,
   sortBy,
@@ -8,12 +10,11 @@ export default (expenses, {
     const lowerCaseText = text.toLowerCase()
     const descriptionMatch = expense.description.toLowerCase().includes(lowerCaseText)
     const noteMatch = expense.note.toLowerCase().includes(lowerCaseText)
+    const expenseMoment = moment(expense.date)
 
     const textMatch = descriptionMatch || noteMatch
-    const startDateMatch = typeof startDate === 'undefined' ||
-      expense.date >= startDate
-    const endDateMatch = typeof endDate === 'undefined' ||
-      expense.date <= endDate
+    const startDateMatch = startDate ? startDate.isSameOrBefore(expenseMoment, 'day') : true
+    const endDateMatch = endDate ? endDate.isSameOrAfter(expenseMoment, 'day') : true
 
     return textMatch && startDateMatch && endDateMatch
   })

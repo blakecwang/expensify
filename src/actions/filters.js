@@ -3,10 +3,13 @@ export const setTextFilter = (text = '') => ({
   text
 })
 
-export const setStartDate = (date = undefined) => ({
+export const setStartDate = (date = undefined) => {
+  console.log('date', date)
+  return {
   type: 'SET_START_DATE',
   date
-})
+  }
+}
 
 export const setEndDate = (date = undefined) => ({
   type: 'SET_END_DATE',

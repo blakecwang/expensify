@@ -34,6 +34,7 @@ ReactDOM.render(jsx, document.getElementById('root'))
 
 // seed some data for dev convenience
 import { addExpense } from './actions/expenses'
-store.dispatch(addExpense({ description: 'ghi', amount: 123 }))
-store.dispatch(addExpense({ description: 'def', amount: 456 }))
-store.dispatch(addExpense({ description: 'abc', amount: 789 }))
+import moment from 'moment'
+store.dispatch(addExpense({ description: 'ghi', amount: 123, date: moment().subtract(5, 'day') }))
+store.dispatch(addExpense({ description: 'def', amount: 456, date: moment() }))
+store.dispatch(addExpense({ description: 'abc', amount: 789, date: moment().add(5, 'day') }))
