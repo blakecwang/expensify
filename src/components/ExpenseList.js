@@ -14,7 +14,6 @@ const ExpenseList = ({ expenses, filters }) => (
           <th>Note</th>
           <th>Amount</th>
           <th>Date</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>

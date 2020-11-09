@@ -4,41 +4,16 @@ import { Provider } from 'react-redux'
 import AppRouter from './routers/AppRouter'
 import configureStore from './store/configureStore'
 
-import { addExpense, removeExpense, editExpense } from './actions/expenses'
-import {
-  setTextFilter,
-  setStartDate,
-  setEndDate,
-  sortByAmount,
-  sortByDate
-} from './actions/filters'
-import getVisibleExpenses from './selectors/expenses'
-
 import 'normalize.css/normalize.css'
 import './index.scss'
-
-const store = configureStore()
-
-store.dispatch(addExpense({ description: 'gas bill', amount: 1000, date: 2 }))
-store.dispatch(addExpense({ description: 'water bill', amount: 2000, date: 3 }))
-store.dispatch(addExpense({ description: 'rent', amount: 3000, date: 1 }))
-
-// amount
-//   gas bill
-//   water bill
-//   rent
-//
-// date
-//   rent
-//   gas bill
-//   water bill
 
 // Hacky way to suppress warnings
 const warn = console.warn
 console.warn = (...warnings) => {
   const warningsToSuppress = [
     'componentWillReceiveProps has been renamed',
-    'componentWillUpdate has been renamed'
+    'componentWillUpdate has been renamed',
+    'failed to load SourceMap' // not working for some reason
   ]
 
   const warningsICareAbout = warnings.filter(warning => (
@@ -48,7 +23,7 @@ console.warn = (...warnings) => {
   warn(...warningsICareAbout)
 }
 
-const state = store.getState()
+const store = configureStore()
 const jsx = (
   <Provider store={store}>
     <AppRouter />
@@ -56,3 +31,9 @@ const jsx = (
 )
 
 ReactDOM.render(jsx, document.getElementById('root'))
+
+// seed some data for dev convenience
+import { addExpense } from './actions/expenses'
+store.dispatch(addExpense({ description: 'ghi', amount: 123 }))
+store.dispatch(addExpense({ description: 'def', amount: 456 }))
+store.dispatch(addExpense({ description: 'abc', amount: 789 }))

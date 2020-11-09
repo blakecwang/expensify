@@ -5,16 +5,17 @@ import { SingleDatePicker } from 'react-dates'
 import 'react-dates/initialize'
 import 'react-dates/lib/css/_datepicker.css'
 
-const ExpenseForm = ({ buttonText, submit }) => {
-  const [description, setDescription] = useState('')
-  const [note, setNote] = useState('')
-  const [amount, setAmount] = useState('')
-  const [date, setDate] = useState(moment())
+import { DATE_FORMAT } from '../globals'
+
+const ExpenseForm = ({ buttonText, submit, expense }) => {
+  const [description, setDescription] = useState(expense ? expense.description : '')
+  const [note, setNote] = useState(expense ? expense.note : '')
+  const [amount, setAmount] = useState(expense ? expense.amount / 100 : '')
+  const [date, setDate] = useState(expense ? moment(expense.date) : moment())
   const [dateFocused, setDateFocused] = useState(false)
   const [descriptionError, setDescriptionError] = useState('')
   const [amountError, setAmountError] = useState('')
 
-  const DATE_FORMAT = 'MMM Do, YYYY'
   const AMOUNT_REGEXP = /^\d*(\.\d{0,2})?$/
 
   const onSubmit = e => {

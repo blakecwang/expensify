@@ -1,5 +1,7 @@
 import React from 'react'
-import RemoveExpenseButton from './RemoveExpenseButton'
+import moment from 'moment'
+import { Link } from 'react-router-dom'
+import { DATE_FORMAT } from '../globals'
 
 const ExpenseListItem = ({
   id,
@@ -9,12 +11,13 @@ const ExpenseListItem = ({
   date
 }) => (
   <tr>
-    <td>{id}</td>
+    <td>
+      <Link to={`/edit/${id}`}>{id}</Link>
+    </td>
     <td>{description}</td>
     <td>{note}</td>
-    <td>{amount}</td>
-    <td>{date}</td>
-    <td><RemoveExpenseButton id={id} /></td>
+    <td>{amount / 100}</td>
+    <td>{moment(date).format(DATE_FORMAT)}</td>
   </tr>
 )
 
